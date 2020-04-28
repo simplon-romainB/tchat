@@ -46,4 +46,4 @@ testem.log
 Thumbs.db
 
 # appconstants
-./app/app.constants.ts
+./src/app/app.constants.ts
