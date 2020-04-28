@@ -3,6 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  SERVER_API_URL: 'https://ancient-dusk-62552.herokuapp.com/',
   production: false
 };
 
