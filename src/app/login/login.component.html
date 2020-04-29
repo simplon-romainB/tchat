@@ -1,1 +1,17 @@
-<p>login works!</p>
+<mat-card class=matcardlogin>
+  <mat-card-header>
+    <mat-card-title>megaTchat</mat-card-title>
+    <mat-card-subtitle>login</mat-card-subtitle>
+  </mat-card-header>
+  <mat-form-field appearance="fill" class=inputfield>
+    <mat-label>email</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class=inputfield>
+    <mat-label>mot de passe</mat-label>
+    <input matInput>
+  </mat-form-field>
+    <button mat-raised-button color="primary" class=loginbutton>connexion</button>
+    <a class="nav-link" routerLink="register" routerLinkActive="active">s'enregistrer</a>
+</mat-card>
+

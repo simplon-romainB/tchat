@@ -1,1 +1,42 @@
-<p>register works!</p>
+<mat-card class=matcardlogin>
+  <mat-card-header>
+    <mat-card-title>megaTchat</mat-card-title>
+    <mat-card-subtitle>enregistrement</mat-card-subtitle>
+  </mat-card-header>
+  <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm" >
+    <mat-form-field appearance="fill" class=inputfield>
+      <mat-label >utilisateur</mat-label>
+      <input matInput name = 'user' formControlName='user'>
+      <small class="form-text text-danger" *ngIf="registerForm.get('user')?.errors?.minLength"
+      >
+   Your username is required to be at least 1 character.
+</small>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class=inputfield>
+      <mat-label >email</mat-label>
+      <input matInput name = 'email' formControlName = 'email'>
+      <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.email"
+      >
+   Your email must be valid
+</small>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class=inputfield>
+      <mat-label>mot de passe</mat-label>
+      <input matInput name = 'password' formControlName ='password'>
+      <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.pattern"
+      >
+   Your password must be 8 character, one maj , one min, one number
+</small>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class=inputfield>
+      <mat-label>confirmation mot de passe</mat-label>
+      <input matInput name = 'confirmPassword' formControlName='confirmPassword'>
+      <small class="form-text text-danger" *ngIf="registerForm.get('passwordConfirm')?.errors?.valid"
+      >
+   Your passwords must match
+</small>
+    </mat-form-field>
+  </form>
+  <button type='submit' mat-raised-button color="primary" class=loginbutton>connexion</button>
+  <a class="nav-link" routerLink="localhost:4200/register" routerLinkActive="active">s'enregistrer</a>
+</mat-card>
