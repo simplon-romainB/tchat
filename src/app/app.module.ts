@@ -7,11 +7,14 @@ import {MatButtonModule} from '@angular/material/button';
 import {AbstractControl, FormBuilder, Validators, ReactiveFormsModule} from '@angular/forms';
 
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { User } from './models/user.model';
+import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,9 +30,13 @@ import { RegisterComponent } from './register/register.component';
     MatCardModule,
     MatInputModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [FormBuilder],
+  providers: [FormBuilder,
+              User,
+              HttpClient
+              ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

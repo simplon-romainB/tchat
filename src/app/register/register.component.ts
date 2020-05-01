@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, Validators, ReactiveFormsModule} from '@angular/forms';
 
 import {User} from '../models/user.model'
-import {RegisterServiceService} from './register-service.service'
+import {RegisterServiceService} from '../register-service.service'
 
 @Component({
   selector: 'app-register',
@@ -10,8 +10,11 @@ import {RegisterServiceService} from './register-service.service'
   styleUrls: ['./register.component.styl']
 })
 export class RegisterComponent  {
+  missMatch = false;
 
   constructor(private fb: FormBuilder, private user: User, private registerService: RegisterServiceService) { }
+
+
 
   registerForm = this.fb.group({
     user: ['', [Validators.required, Validators.minLength(1), Validators.pattern('^[_.@A-Za-z0-9-]*$')]],
@@ -22,14 +25,16 @@ export class RegisterComponent  {
   });
 
   register() {
-    let missMatch = false;
     if (this.registerForm.get('password').value !== this.registerForm.get('confirmPassword').value) {
-        missMatch = true;
+        this.missMatch = true;
+        return this.missMatch;
       }
-      else if (missMatch === false) {
+      else  {
+        this.missMatch = false;
         this.user.password = this.registerForm.get('password').value;
         this.user.user  = this.registerForm.get('user').value;
         this.user.email = this.registerForm.get('email').value;
+        this.registerService.save(this.user);
         this.registerService.save(this.user).subscribe(
           (v) => (console.log(v)),
           response => this.processError(response)
@@ -42,13 +47,6 @@ export class RegisterComponent  {
     console.log(response);
   }
 
-  passMatch(form: AbstractControl) {
-    if ((form.get('password') == null) || (form.get('confirmPassword') == null)) {
-      return {valid: false};
-    }
-    else if (form.get('password').value !== form.get('confirmPassword').value) {
-      return {valid: false};
-    }
-  }
+
 
 }
