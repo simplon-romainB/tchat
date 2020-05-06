@@ -1,3 +1,4 @@
+<form (ngSubmit)="login()" [formGroup]="loginForm">
 <mat-card class=matcardlogin>
   <mat-card-header>
     <mat-card-title>megaTchat</mat-card-title>
@@ -11,7 +12,8 @@
     <mat-label>mot de passe</mat-label>
     <input matInput>
   </mat-form-field>
-    <button mat-raised-button color="primary" class=loginbutton>connexion</button>
+    <button type=submit mat-raised-button color="primary" class=loginbutton>connexion</button>
     <a class="nav-link" routerLink="../register" routerLinkActive="active">s'enregistrer</a>
 </mat-card>
+</form>
 

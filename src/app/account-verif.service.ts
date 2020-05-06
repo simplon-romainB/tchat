@@ -9,7 +9,7 @@ import { User } from './models/user.model';
 export class AccountVerifService {
   constructor(private http: HttpClient) {}
 
-  verifAccount(user: User): Observable<{}> {
-    return this.http.post(SERVER_API_URL + '/verifyaccount', user);
+  verifAccount(user: User) {
+    return this.http.post(SERVER_API_URL + '/accountactivation', user).subscribe((v) => {console.log(v)});
   }
 }

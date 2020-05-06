@@ -10,6 +10,7 @@ import { RegisterComponent } from './register.component';
 import { RegisterServiceService } from '../register-service.service'
 import { User } from '../models/user.model';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AccountVerifService } from '../account-verif.service';
 
 
 
@@ -17,6 +18,7 @@ describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let service: RegisterServiceService;
+  let serviceAccount: AccountVerifService;
 
 
 
@@ -45,8 +47,7 @@ describe('RegisterComponent', () => {
     expect(component.missMatch).toBe(true);
   });
 
-  it('should call save with User arguments', inject(
-    [RegisterServiceService], () => {
+  it('should call save with User arguments', () => {
       fakeAsync((service: RegisterServiceService) => {
         spyOn(service, 'save').and.returnValue(of({}));
         component.registerForm.patchValue({
@@ -56,14 +57,16 @@ describe('RegisterComponent', () => {
         component.register();
         tick();
         expect(service.save).toHaveBeenCalledWith({
-          user: 'user',
+          user: '',
           password: 'password',
-          email: 'test@test.com',
+          email: '',
           isActivate: false,
-          authorities: 'member'
+          authorities: null
+
         });
       });
-    }));
+    });
+
 });
 
 
